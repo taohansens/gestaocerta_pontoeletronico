@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class PontoEletronicoMinDTO {
+    private String id;
     private String data;
     private String horaEntrada;
     private String horaSaida;

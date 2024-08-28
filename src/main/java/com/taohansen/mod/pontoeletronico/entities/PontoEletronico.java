@@ -15,13 +15,13 @@ import java.time.LocalTime;
 public class PontoEletronico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private LocalDate data;
     private LocalTime horaEntrada;
     private LocalTime horaSaida;
-    private Duration horasTrabalhadas;
-    private Duration horasExtras;
+    private Double horasTrabalhadas;
+    private Double horasExtras;
 
     private Long empregadoId;
 }

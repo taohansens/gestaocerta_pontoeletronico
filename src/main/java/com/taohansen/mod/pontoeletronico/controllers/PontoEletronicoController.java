@@ -1,12 +1,12 @@
 package com.taohansen.mod.pontoeletronico.controllers;
 
 import com.taohansen.mod.pontoeletronico.dto.PontoEletronicoMinDTO;
-import com.taohansen.mod.pontoeletronico.entities.PontoEletronico;
 import com.taohansen.mod.pontoeletronico.services.PontoEletronicoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -14,6 +14,23 @@ import java.util.List;
 @RequestMapping("/ponto/{empregadoId}")
 public class PontoEletronicoController {
     private final PontoEletronicoService pontoEletronicoService;
+
+    @GetMapping
+    public ResponseEntity<List<PontoEletronicoMinDTO>> getAll(@PathVariable Long empregadoId) {
+        List<PontoEletronicoMinDTO> pontos = pontoEletronicoService.getAllByEmpregado(empregadoId);
+        return ResponseEntity.ok(pontos);
+    }
+    @GetMapping("/consulta")
+        public ResponseEntity<List<PontoEletronicoMinDTO>> getByDate(@PathVariable Long empregadoId, @RequestParam LocalDate data) {
+            List<PontoEletronicoMinDTO> pontos = pontoEletronicoService.getByDate(empregadoId, data);
+            return ResponseEntity.ok(pontos);
+    }
+
+    @GetMapping("/consulta/{id}")
+    public ResponseEntity<PontoEletronicoMinDTO> getByDate(@PathVariable Long id) {
+        PontoEletronicoMinDTO ponto = pontoEletronicoService.getById(id);
+        return ResponseEntity.ok(ponto);
+    }
 
     @PostMapping("/entrada")
     public ResponseEntity<PontoEletronicoMinDTO> registrarEntrada(@PathVariable Long empregadoId) {
@@ -25,11 +42,5 @@ public class PontoEletronicoController {
     public ResponseEntity<PontoEletronicoMinDTO> registrarSaida(@PathVariable Long empregadoId) {
         PontoEletronicoMinDTO ponto = pontoEletronicoService.registrarSaida(empregadoId);
         return ResponseEntity.ok(ponto);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<PontoEletronico>> listarPontos(@PathVariable Long empregadoId) {
-        List<PontoEletronico> pontos = pontoEletronicoService.listarPontosNaDataPorEmpregado(empregadoId);
-        return ResponseEntity.ok(pontos);
     }
 }
