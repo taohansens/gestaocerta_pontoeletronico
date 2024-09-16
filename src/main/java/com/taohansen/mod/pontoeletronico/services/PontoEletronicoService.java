@@ -122,7 +122,8 @@ public class PontoEletronicoService {
         }
 
         if (pontosDoDia.size() == 1 && diftempo.toHours() >= 6) {
-            diftempo = diftempo.minus(DURACAO_INTERVALO_PADRAO); }
+            diftempo = diftempo.minus(DURACAO_INTERVALO_PADRAO);
+        }
 
         long diftempoMinutes = diftempo.toMinutes();
         double horas = (double) diftempoMinutes / 6 * 0.1;
@@ -134,12 +135,8 @@ public class PontoEletronicoService {
     public Double calcularHorasExtras(Long empregadoId, LocalDate data, Long cargaHoraria) {
         Double horasTrabalhadas = calcularHorasTrabalhadas(empregadoId, data);
 
-        if (horasTrabalhadas > cargaHoraria) {
-            double diferenca = horasTrabalhadas - cargaHoraria;
-            BigDecimal horasExtras = new BigDecimal(diferenca).setScale(1, RoundingMode.DOWN);
-            return horasExtras.doubleValue();
-        }
-
-        return 0.0;
+        double diferenca = horasTrabalhadas - cargaHoraria;
+        BigDecimal horasExtras = new BigDecimal(diferenca).setScale(1, RoundingMode.DOWN);
+        return horasExtras.doubleValue();
     }
 }

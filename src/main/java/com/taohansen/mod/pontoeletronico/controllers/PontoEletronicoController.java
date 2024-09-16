@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +52,7 @@ public class PontoEletronicoController {
             @Parameter(description = "Id de cadastro do empregado doméstico", required = true)
             @PathVariable Long empregadoId,
             @Parameter(description = "Data a ser consultada (dd/mm/aaaa)", required = true)
-            @RequestParam LocalDate data) {
+            @RequestParam("data")  @DateTimeFormat(pattern = "dd/MM/yyyy") LocalDate data) {
         List<PontoEletronicoMinDTO> pontos = pontoEletronicoService.getByDate(empregadoId, data);
         return ResponseEntity.ok(pontos);
     }
@@ -109,6 +110,6 @@ public class PontoEletronicoController {
             @Parameter(description = "Id de registro do empregado no banco de dados", required = true)
             @PathVariable Long empregadoId) {
         PontoEletronicoMinDTO ponto = pontoEletronicoService.registrarSaida(empregadoId);
-        return ResponseEntity.ok(ponto);
+        return ResponseEntity.status(201).body(ponto);
     }
 }
