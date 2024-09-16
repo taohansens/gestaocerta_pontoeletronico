@@ -31,11 +31,6 @@ public class ValidacaoPontoRepositoryTests {
         validacaoPonto.setPontoEletronicoId(1L);
         repository.save(validacaoPonto);
 
-        ValidacaoPonto validacaoPonto2 = new ValidacaoPonto();
-        validacaoPonto.setEmpregadoId(2L);
-        validacaoPonto.setPontoEletronicoId(2L);
-        repository.save(validacaoPonto);
-
         existingId = validacaoPonto.getId();
         nonExistingId = 1000L;
         countTotalPontos = repository.count();

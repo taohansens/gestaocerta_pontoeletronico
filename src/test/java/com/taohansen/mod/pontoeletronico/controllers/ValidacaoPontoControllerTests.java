@@ -1,19 +1,13 @@
 package com.taohansen.mod.pontoeletronico.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.taohansen.mod.pontoeletronico.dto.PontoEletronicoMinDTO;
 import com.taohansen.mod.pontoeletronico.dto.ValidacaoPontoDTO;
 import com.taohansen.mod.pontoeletronico.dto.ValidacaoPontoInsertDTO;
-import com.taohansen.mod.pontoeletronico.entities.PontoEletronico;
-import com.taohansen.mod.pontoeletronico.services.PontoEletronicoService;
 import com.taohansen.mod.pontoeletronico.services.ValidacaoPontoService;
-import com.taohansen.mod.pontoeletronico.services.exceptions.PontoEletronicoException;
 import com.taohansen.mod.pontoeletronico.services.exceptions.ResourceNotFoundException;
 import com.taohansen.mod.pontoeletronico.services.exceptions.ValidationDuplicatedException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,11 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 

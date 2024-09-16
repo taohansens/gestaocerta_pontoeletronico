@@ -20,7 +20,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -107,9 +106,7 @@ public class PontoEletronicoServiceTests {
     public void getByIdShouldThrowResourceNotFoundExceptionWhenIdDoesNotExist() {
         when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
 
-        assertThrows(ResourceNotFoundException.class, () -> {
-            service.getById(nonExistingId);
-        });
+        assertThrows(ResourceNotFoundException.class, () -> service.getById(nonExistingId));
 
         verify(repository, times(1)).findById(nonExistingId);
         verify(pontoEletronicoMapper, never()).toMinDto(any());
@@ -178,9 +175,7 @@ public class PontoEletronicoServiceTests {
         when(empregadoClient.obterEmpregado(nonExistingId))
                 .thenThrow(new FeignException.FeignClientException.NotFound("NOT FOUND", request, null, null));
 
-        assertThrows(ResourceNotFoundException.class, () -> {
-            service.registrarEntrada(nonExistingId);
-        });
+        assertThrows(ResourceNotFoundException.class, () -> service.registrarEntrada(nonExistingId));
 
         verify(empregadoClient, times(1)).obterEmpregado(nonExistingId);
         verify(repository, never()).save(any(PontoEletronico.class));
@@ -191,9 +186,7 @@ public class PontoEletronicoServiceTests {
         when(empregadoClient.obterEmpregado(empregadoId)).thenReturn(empregadoDTO);
         when(repository.findByEmpregadoIdAndDataAndHoraSaidaIsNull(empregadoId, LocalDate.now())).thenReturn(Optional.of(pontoEletronico1));
 
-        assertThrows(PontoEletronicoException.class, () -> {
-            service.registrarEntrada(empregadoId);
-        });
+        assertThrows(PontoEletronicoException.class, () -> service.registrarEntrada(empregadoId));
 
         verify(empregadoClient, times(1)).obterEmpregado(empregadoId);
         verify(repository, never()).save(any(PontoEletronico.class));
@@ -217,9 +210,7 @@ public class PontoEletronicoServiceTests {
         when(empregadoClient.obterEmpregado(empregadoId)).thenReturn(empregadoDTO);
         when(repository.findByEmpregadoIdAndDataAndHoraSaidaIsNull(empregadoId, LocalDate.now())).thenReturn(Optional.empty());
 
-        assertThrows(PontoEletronicoException.class, () -> {
-            service.registrarSaida(empregadoId);
-        });
+        assertThrows(PontoEletronicoException.class, () -> service.registrarSaida(empregadoId));
 
         verify(empregadoClient, times(1)).obterEmpregado(empregadoId);
         verify(repository, never()).save(any(PontoEletronico.class));

@@ -127,9 +127,7 @@ public class ValidacaoPontoServiceTests {
         validacaoPontoInsDTO.setComentario("OK");
         validacaoPontoInsDTO.setCodigoSituacao("100");
 
-        assertThrows(ResourceNotFoundException.class, () -> {
-            service.validarById(validacaoPontoInsDTO);
-        });
+        assertThrows(ResourceNotFoundException.class, () -> service.validarById(validacaoPontoInsDTO));
 
         verify(pontoEletronicoRepository, times(1)).findById(nonExistingId);
         verify(repository, never()).save(any(ValidacaoPonto.class));
@@ -144,9 +142,7 @@ public class ValidacaoPontoServiceTests {
         validacaoPontoInsDTO.setComentario("OK");
         validacaoPontoInsDTO.setCodigoSituacao("100");
 
-        assertThrows(ValidationDuplicatedException.class, () -> {
-            service.validarById(validacaoPontoInsDTO);
-        });
+        assertThrows(ValidationDuplicatedException.class, () -> service.validarById(validacaoPontoInsDTO));
 
         verify(pontoEletronicoRepository, times(1)).findById(existingId);
         verify(repository, never()).save(any(ValidacaoPonto.class));

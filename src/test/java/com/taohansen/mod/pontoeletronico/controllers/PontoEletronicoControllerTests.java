@@ -6,8 +6,6 @@ import com.taohansen.mod.pontoeletronico.entities.PontoEletronico;
 import com.taohansen.mod.pontoeletronico.services.PontoEletronicoService;
 import com.taohansen.mod.pontoeletronico.services.exceptions.PontoEletronicoException;
 import com.taohansen.mod.pontoeletronico.services.exceptions.ResourceNotFoundException;
-import feign.FeignException;
-import feign.Request;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -32,14 +30,8 @@ public class PontoEletronicoControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @InjectMocks
-    private PontoEletronicoController pontoEletronicoController;
-
     @MockBean
     private PontoEletronicoService service;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     private Long existingId;
     private Long nonExistingId;

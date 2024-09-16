@@ -36,12 +36,12 @@ public class PontoEletronicoRepositoryTests {
         repository.save(pontoEletronico);
 
         PontoEletronico pontoEletronico2 = new PontoEletronico();
-        pontoEletronico.setEmpregadoId(2L);
-        pontoEletronico.setData(LocalDate.now());
-        pontoEletronico.setHoraEntrada(LocalDateTime.now().toLocalTime().minusHours(10));
-        pontoEletronico.setHoraSaida(LocalDateTime.now().toLocalTime().minusHours(5));
-        pontoEletronico.setHorasExtras(2.0);
-        repository.save(pontoEletronico);
+        pontoEletronico2.setEmpregadoId(2L);
+        pontoEletronico2.setData(LocalDate.now());
+        pontoEletronico2.setHoraEntrada(LocalDateTime.now().toLocalTime().minusHours(10));
+        pontoEletronico2.setHoraSaida(LocalDateTime.now().toLocalTime().minusHours(5));
+        pontoEletronico2.setHorasExtras(2.0);
+        repository.save(pontoEletronico2);
 
         existingId = pontoEletronico.getId();
         nonExistingId = 1000L;
