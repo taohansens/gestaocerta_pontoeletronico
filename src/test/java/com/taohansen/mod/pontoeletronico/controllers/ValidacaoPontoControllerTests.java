@@ -65,7 +65,7 @@ public class ValidacaoPontoControllerTests {
         mockMvc.perform(post("/validar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonContent))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.pontoEletronicoId").value(validacaoPontoDTO.getPontoEletronicoId()));
 
         verify(service, times(1)).validarById(validacaoPontoInsDTO);

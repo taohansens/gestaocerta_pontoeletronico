@@ -1,6 +1,5 @@
 package com.taohansen.mod.pontoeletronico.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taohansen.mod.pontoeletronico.dto.PontoEletronicoMinDTO;
 import com.taohansen.mod.pontoeletronico.entities.PontoEletronico;
 import com.taohansen.mod.pontoeletronico.services.PontoEletronicoService;
@@ -8,7 +7,6 @@ import com.taohansen.mod.pontoeletronico.services.exceptions.PontoEletronicoExce
 import com.taohansen.mod.pontoeletronico.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
