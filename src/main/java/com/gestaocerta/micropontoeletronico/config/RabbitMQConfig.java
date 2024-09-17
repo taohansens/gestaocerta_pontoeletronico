@@ -12,7 +12,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue filaBancoDeHoras() {
-        return new Queue("filaBancoDeHoras", false);
+        return new Queue("filaBancoDeHoras", true);
     }
 
     @Bean
