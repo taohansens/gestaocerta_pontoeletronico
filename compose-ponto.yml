@@ -3,22 +3,24 @@ services:
     build: .
     image: taohans/gestaocerta:micro-ponto
     container_name: micro-ponto
+    depends_on:
+      - postgres-ponto-db
     environment:
       - APP_PROFILE=dev
       - SERVER_PORT=8083
-      - DB_HOST=postgres-db
+      - DB_HOST=postgres-ponto-db
       - DB_PORT=5432
       - DB_NAME=microservice_db
       - DB_USER=postgres
       - DB_PASS=postgres
-      - GATEWAY_URL="http://localhost:8080/ponto/"
+      - GATEWAY_URL=http://localhost:8080/ponto/
     networks:
       - gestaocerta-private
       - int-ponto-net
 
-  postgres-db:
+  postgres-ponto-db:
     image: postgres:15
-    container_name: postgres-db
+    container_name: postgres-ponto-db
     environment:
       POSTGRES_DB: microservice_db
       POSTGRES_USER: postgres
@@ -31,7 +33,7 @@ services:
 networks:
   gestaocerta-private:
     external: true
-  int-empregados-net:
+  int-ponto-net:
 
 volumes:
   postgres_data_ponto:
