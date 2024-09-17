@@ -46,7 +46,10 @@ public class ValidacaoPontoService {
         entity.setValidadoPeloEmpregador(true);
         pontoEletronicoRepository.save(entity);
 
-        validacaoProducer.sendValidacaoPonto(validacao);
+        try {
+            validacaoProducer.sendValidacaoPonto(validacao);
+        } catch (Exception _){}
+
         return validacaoPontoMapper.toDTO(validacao);
     }
 
